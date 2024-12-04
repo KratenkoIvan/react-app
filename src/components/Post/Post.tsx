@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './Post.css'
 
 interface IPostProps {
     title: string
@@ -15,14 +16,17 @@ export function Post(props: IPostProps){
         setButtonDisabled(true)
     }
     return(
-        <div>
+        <div className="post">
             <h1>{props.title}</h1>
             <p>{props.description}</p>
-            <img src={props.image}/>
-            <p>{props.author}</p>
-            <p>Likes: {likes}</p>
-            <button onClick={addLike} disabled = {isButtonDisabled} style={{width: '50px', height: '30px', fontSize: '18px'}}>👍</button>
-            <hr />
+            <img src={props.image} className="postImg"/>
+            <div className="postBottom">
+                <div className="likes">
+                <p className="p-likes">Likes: {likes}</p>
+                <button onClick={addLike} disabled = {isButtonDisabled} className="postButton">👍</button>
+                </div>
+                <p className="postAuthor">{props.author}</p>
+            </div>
         </div>
     )
 }

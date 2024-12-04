@@ -1,0 +1,47 @@
+.post{
+    color: white;
+    background-color: #394857;
+    width: 600px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.postImg{
+    width: 343px;
+    border-radius: 10px;
+}
+
+.postButton{
+    width: 50px;
+    height: 30px;
+    font-size: 25px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.postBottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.likes{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.postAuthor{
+    margin-right: 10px;
+    font-size: 21px;
+}
+
+.p-likes{
+    font-size: 21px;
+}

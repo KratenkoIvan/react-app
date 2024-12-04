@@ -1,4 +1,6 @@
-import { Post } from './Post'
+import { Post } from "../Post/Post"
+import './PostList.css'
+
 
 export function PostList(){
     const posts = [
@@ -8,7 +10,7 @@ export function PostList(){
     ]
 
     return (
-        <div>
+        <div className="postList">
             {posts.map((post)=> {
                 return <Post title = {post.title} description = {post.description} image = {post.image} author = {post.author}></Post>
             }
