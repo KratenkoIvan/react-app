@@ -1,16 +1,16 @@
 .post{
     color: white;
     background-color: #394857;
-    width: 600px;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 40px;
+    padding: 0 30px;
 }
 
 .postImg{
-    width: 343px;
+    width: 60vh;
     border-radius: 10px;
 }
 
@@ -22,13 +22,15 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-top: 8px;
+
 }
 
 .postBottom{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-left: -25px;
 }
 
 .likes{
@@ -39,9 +41,20 @@
 
 .postAuthor{
     margin-right: 10px;
-    font-size: 21px;
+    font-size: 24px;
+    margin: 15px;
 }
 
 .p-likes{
-    font-size: 21px;
+    font-size: 24px;
+    margin: 15px;
+}
+
+.postName{
+    margin: 10px;
+}
+
+.postDescription{
+    margin: 10px;
+    font-size: 18px;
 }
