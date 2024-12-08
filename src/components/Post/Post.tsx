@@ -2,6 +2,7 @@ import { useState } from "react"
 import './Post.css'
 
 interface IPostProps {
+    id: number
     title: string
     description: string
     image: string

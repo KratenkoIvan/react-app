@@ -7,11 +7,12 @@
     border-bottom: 1px solid gray;
     position: fixed;
     background-color: #14181C;
+    
 }
 
 .header a{
-    text-decoration: none;
     color: white;
     padding: 10px;
     font-size: 36px;
+    text-decoration: none;
 }
