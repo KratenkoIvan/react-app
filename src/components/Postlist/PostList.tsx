@@ -22,7 +22,6 @@ export function PostList(){
                 return post.category === selectedCategory
             }))
         }
-        console.log(selectedCategory)
     }, [selectedCategory])
 
     useEffect(() => {

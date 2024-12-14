@@ -1,5 +1,6 @@
 import { useState } from "react"
 import './Post.css'
+import { Link } from "react-router-dom"
 
 interface IPostProps {
     id: number
@@ -18,9 +19,11 @@ export function Post(props: IPostProps){
     }
     return(
         <div className="post">
-            <h1 className="postName">{props.title}</h1>
-            <p className="postDescription">{props.description}</p>
-            <img src={props.image} className="postImg"/>
+            <Link to = {`/post/${props.id}`}>
+                <h1 className="postName">{props.title}</h1>
+                <p className="postDescription">{props.description}</p>
+                <img src={props.image} className="postImg"/>
+            </Link>
             <div className="postBottom">
                 <div className="likes">
                 <p className="p-likes">Likes: {likes}</p>
