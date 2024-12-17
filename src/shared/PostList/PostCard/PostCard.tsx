@@ -1,5 +1,5 @@
 import { useState } from "react"
-import './Post.css'
+import './PostCard.css'
 import { Link } from "react-router-dom"
 
 interface IPostProps {

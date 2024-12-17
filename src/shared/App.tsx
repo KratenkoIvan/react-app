@@ -1,8 +1,9 @@
-import { PostList } from "./Postlist/PostList"
 import { Layout } from "./Layout/Layout"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { PostPage } from "./PostPage/PostPage"
+import { PostPage } from "../pages/PostPage/PostPage"
 import { Error } from "./Error/Error"
+import { MainPage } from "../pages/MainPage/MainPage"
+import { PostListPage } from "../pages/PostListPage/PostListPage"
 
 export function App(){
     return(
@@ -10,7 +11,8 @@ export function App(){
             <BrowserRouter>
                 <Routes>
                     <Route path = '/' element = {<Layout></Layout>}>
-                        <Route path ='/posts' element = {<PostList></PostList>}></Route>
+                        <Route path ='/' element = {<MainPage></MainPage>}></Route>
+                        <Route path ='/posts' element = {<PostListPage></PostListPage>}></Route>
                         <Route path="/post/:id" element = {<PostPage></PostPage>}></Route>
                         <Route path ='/*' element = {<Error></Error>}></Route>
                     </Route>
