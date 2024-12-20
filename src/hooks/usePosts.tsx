@@ -9,6 +9,7 @@ export interface IPost{
     category: string
 }
 export function usePosts(){
+    const [isLoading, setIsLoading] = useState(true)
     const [posts, setPosts] = useState<IPost[]>([])
     
     useEffect(() => {
@@ -16,9 +17,10 @@ export function usePosts(){
             const response = await fetch('https://dev.to/api/articles')
             const posts = await response.json()
             setPosts(posts)
+            setIsLoading(false)
         }
         getPosts()
 
     },[])
-    return {posts: posts}
+    return {posts: posts, isLoading: isLoading}
 }

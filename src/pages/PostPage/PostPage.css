@@ -28,3 +28,8 @@
     margin: 20px 0;
     color: bisque;
 }
+
+.loading{
+    height: 100px;
+    width: 100px;
+}

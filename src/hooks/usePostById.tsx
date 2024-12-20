@@ -8,6 +8,7 @@ interface IPost {
     body_markdown: string;
 }
 export function usePostById(id: number){
+    const [isLoading, setIsLoading] = useState(true)
     const [post, setPost] = useState<IPost>({
         id: 0,
         title:'',
@@ -22,9 +23,10 @@ export function usePostById(id: number){
                     const data = await response.json()
                     console.log(data)
                     setPost(data)
+                    setIsLoading(false)
                 }
                 getPost()
             },[id])
 
-            return {post: post}
+            return {post: post, isLoading: isLoading}
 }

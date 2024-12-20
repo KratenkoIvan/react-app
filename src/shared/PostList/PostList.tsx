@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Post } from "./PostCard/PostCard"
 import { usePosts } from "../../hooks/usePosts";
 import './PostList.css'
+import { FidgetSpinner } from "react-loader-spinner";
 
 // const posts = [
 //     {id: 0, category: 'Cats', title: 'Cute cat', description: 'A very cute cat', social_image: 'https://www.womansworld.com/wp-content/uploads/2024/08/cute-cats.jpg?w=1200&h=630&crop=1&quality=86&strip=all', author: 'Cat Author'},
@@ -12,7 +13,7 @@ import './PostList.css'
 // ]
 
 export function PostList(){
-    const {posts} = usePosts()
+    const {posts, isLoading} = usePosts()
 
     const [filteredPosts, setFilteredPosts] = useState(posts);
     const [selectedCategory, setSelectedCategory] = useState('All')
@@ -29,18 +30,23 @@ export function PostList(){
 
     return (
         <div className="postList">
-            <select onChange={(event)=>{
-                setSelectedCategory(event.target.value)
-            }}>
-                <option value="All">All</option>
-                <option value="Programming">Programming</option>
-                <option value="Games">Games</option>
-                <option value="Cats">Cats</option>
-                <option value="Food">Food</option>
-            </select>
-            {filteredPosts.map((post)=> {
-                return <Post key={post.id} id = {post.id} title = {post.title} description = {post.description} image = {post.social_image} author = {post.author}></Post>
-            }
+            { isLoading === true ? (<div><FidgetSpinner wrapperClass='loading' backgroundColor='#FFFFE0' ballColors={['#FFD700', '#FFD700', '#FFD700']}/></div>) : ( 
+                <>
+                    <select onChange={(event)=>{
+                        setSelectedCategory(event.target.value)
+                    }}>
+                        <option value="All">All</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Games">Games</option>
+                        <option value="Cats">Cats</option>
+                        <option value="Food">Food</option>
+                    </select>
+                     
+                    {filteredPosts.map((post)=> {
+                        return <Post key={post.id} id = {post.id} title = {post.title} description = {post.description} image = {post.social_image} author = {post.author}></Post>
+                    }
+                    )}
+                </>
             )}
         </div>
     )
