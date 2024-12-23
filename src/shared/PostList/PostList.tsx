@@ -13,13 +13,13 @@ import { FidgetSpinner } from "react-loader-spinner";
 // ]
 
 export function PostList(){
-    const {posts, isLoading} = usePosts()
+    const {posts, isLoading, error} = usePosts()
 
     const [filteredPosts, setFilteredPosts] = useState(posts);
     const [selectedCategory, setSelectedCategory] = useState('All')
 
     useEffect(() => {
-        if (selectedCategory == 'All'){
+        if (selectedCategory === 'All'){
             setFilteredPosts(posts)
         } else {
             setFilteredPosts(posts.filter((post)=> {
@@ -30,8 +30,14 @@ export function PostList(){
 
     return (
         <div className="postList">
-            { isLoading === true ? (<div><FidgetSpinner wrapperClass='loading' backgroundColor='#FFFFE0' ballColors={['#FFD700', '#FFD700', '#FFD700']}/></div>) : ( 
-                <>
+            { isLoading === true ? (<div className="loading"><FidgetSpinner 
+            backgroundColor='#FFFFE0' 
+            ballColors={['#FFD700', '#FFD700', '#FFD700']}
+            visible={true}
+            height="200"
+            width="200"
+            ariaLabel="fidget-spinner-loading"
+             /></div>) : (!error ? <>
                     <select onChange={(event)=>{
                         setSelectedCategory(event.target.value)
                     }}>
@@ -47,6 +53,7 @@ export function PostList(){
                     }
                     )}
                 </>
+            : <div className="error">{error}</div>
             )}
         </div>
     )

@@ -8,7 +8,8 @@ interface IPost {
     body_markdown: string;
 }
 export function usePostById(id: number){
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string>()
     const [post, setPost] = useState<IPost>({
         id: 0,
         title:'',
@@ -18,15 +19,26 @@ export function usePostById(id: number){
     })
 
     useEffect(() => {
-                async function getPost(){
-                    const response = await fetch(`https://dev.to/api/articles/${id}`)
-                    const data = await response.json()
-                    console.log(data)
-                    setPost(data)
-                    setIsLoading(false)
+        async function getPost(){
+            try {
+                setIsLoading(true)
+                const response = await fetch(`https://dev.to/api/articles/${id}`)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                getPost()
-            },[id])
+                const data = await response.json()
+                setPost(data)
+            }
+            catch (error) {
+                const err = error instanceof Error ? error.message : "An unknown error occurred";
+                setError(`${err}`)
+            }
+            finally {
+                setIsLoading(false)
+            }
+        }
+        getPost()
+    },[id])
 
-            return {post: post, isLoading: isLoading}
+    return {post: post, isLoading: isLoading, error: error}
 }

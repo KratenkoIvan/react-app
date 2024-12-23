@@ -6,18 +6,26 @@ import { FidgetSpinner } from 'react-loader-spinner'
 
 export function PostPage(){
     const params = useParams()
-    const {post, isLoading} = usePostById(Number(params.id))
+    const {post, isLoading, error} = usePostById(Number(params.id))
     useTitle(`Post`)
 
     return(
         <div className='postPage'>
-             { isLoading === true ? (<div><FidgetSpinner wrapperClass='loading' backgroundColor='#FFFFE0' ballColors={['#FFD700', '#FFD700', '#FFD700']}/></div>) : ( 
-                <>  
+            { isLoading === true ? (<div className='loading'><FidgetSpinner 
+            backgroundColor='#FFFFE0' 
+            ballColors={['#FFD700', '#FFD700', '#FFD700']}
+            visible={true}
+            height="200"
+            width="200"
+            ariaLabel="fidget-spinner-loading"
+             /></div>) : (!error ? <>
+                    <h1>{error}</h1>
                     <h1>{post.title}</h1>
                     <img src={post.cover_image} alt="yo" />
                     <h2>{post.body_markdown}</h2>
                     <p>#{post.tags}</p>
                 </>
+            : <div className='error'>{error}</div>
             )}
         </div>
     )

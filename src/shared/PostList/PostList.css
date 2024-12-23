@@ -41,3 +41,9 @@
     color: #fff;
 }
 
+.loading{
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+}

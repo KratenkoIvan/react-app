@@ -9,18 +9,31 @@ export interface IPost{
     category: string
 }
 export function usePosts(){
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string>()
     const [posts, setPosts] = useState<IPost[]>([])
     
     useEffect(() => {
         async function getPosts(){
-            const response = await fetch('https://dev.to/api/articles')
-            const posts = await response.json()
-            setPosts(posts)
-            setIsLoading(false)
+            try {
+                setIsLoading(true)
+                const response = await fetch('https://dev.to/api/articles')
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const posts = await response.json()
+                setPosts(posts)
+            
+            } 
+            catch (error) {
+                const err = error instanceof Error ? error.message : "An unknown error occurred";
+                setError(`${err}`)
+            }
+            finally {
+                setIsLoading(false)
+            }
         }
         getPosts()
-
     },[])
-    return {posts: posts, isLoading: isLoading}
+    return {posts: posts, isLoading: isLoading, error}
 }

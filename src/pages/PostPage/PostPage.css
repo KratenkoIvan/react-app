@@ -30,6 +30,13 @@
 }
 
 .loading{
-    height: 100px;
-    width: 100px;
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.error{
+    font-size: 32px;
+    color: white;
 }
