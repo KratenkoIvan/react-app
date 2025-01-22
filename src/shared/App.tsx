@@ -4,10 +4,20 @@ import { PostPage } from "../pages/PostPage/PostPage"
 import { NotFoundPage } from "../pages/NotFoundPage/NotFoundPage"
 import { MainPage } from "../pages/MainPage/MainPage"
 import { PostListPage } from "../pages/PostListPage/PostListPage"
+import { createContext } from "react"
+
+interface ILikedPosts{
+    likedPost: string
+    addLike: ()=> void
+}
+
+const initialValue: ILikedPosts[] = []
+const likedPostsContext = createContext<ILikedPosts[]>(initialValue)
 
 export function App(){
     return(
         <div>
+            <likedPostsContext.Provider value = {{likedPosts: [], addLike: () => {}}}>
             <BrowserRouter>
                 <Routes>
                     <Route path = '/' element = {<Layout></Layout>}>
@@ -18,6 +28,8 @@ export function App(){
                     </Route>
                 </Routes>
             </BrowserRouter>
+            </likedPostsContext.Provider>
+            
         </div>
     )
 }
