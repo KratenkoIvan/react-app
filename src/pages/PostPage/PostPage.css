@@ -40,3 +40,18 @@
     font-size: 32px;
     color: white;
 }
+
+
+.postPage-likes{
+display: flex;
+}
+
+
+.postPage-likes p{
+    color: white;
+}
+
+.postPage-likes button{
+    margin-top: 12px;
+    font-size: 32px;
+}

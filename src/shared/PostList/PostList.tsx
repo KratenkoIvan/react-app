@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { Post } from "./PostCard/PostCard"
+import { PostCard } from "./PostCard/PostCard"
 import { usePosts } from "../../hooks/usePosts";
 import './PostList.css'
 import { FidgetSpinner } from "react-loader-spinner";
+
 
 // const posts = [
 //     {id: 0, category: 'Cats', title: 'Cute cat', description: 'A very cute cat', social_image: 'https://www.womansworld.com/wp-content/uploads/2024/08/cute-cats.jpg?w=1200&h=630&crop=1&quality=86&strip=all', author: 'Cat Author'},
@@ -14,7 +15,6 @@ import { FidgetSpinner } from "react-loader-spinner";
 
 export function PostList(){
     const {posts, isLoading, error} = usePosts()
-
     const [filteredPosts, setFilteredPosts] = useState(posts);
     const [selectedCategory, setSelectedCategory] = useState('All')
 
@@ -22,9 +22,9 @@ export function PostList(){
         if (selectedCategory === 'All'){
             setFilteredPosts(posts)
         } else {
-            setFilteredPosts(posts.filter((post)=> {
-                return post.category === selectedCategory
-            }))
+            // setFilteredPosts(posts.filter((post)=> {
+            //     return post.category === selectedCategory
+            // }))
         }
     }, [selectedCategory, posts])
 
@@ -49,7 +49,7 @@ export function PostList(){
                     </select>
                      
                     {filteredPosts.map((post)=> {
-                        return <Post key={post.id} id = {post.id} title = {post.title} description = {post.description} image = {post.social_image} author = {post.author}></Post>
+                        return <PostCard key={post.id} id = {post.id} title = {post.title} description = {post.description} body_markdown = {post.body_markdown} social_image = {post.social_image}></PostCard>
                     }
                     )}
                 </>

@@ -3,9 +3,10 @@ import { useEffect, useState } from "react"
 interface IPost {
     id: number;
     title: string;
-    cover_image: string;
-    tags: string;
-    body_markdown: string;
+    social_image: string;
+    description?: string;
+    tags?: string;
+    body_markdown?: string;
 }
 export function usePostById(id: number){
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -13,7 +14,7 @@ export function usePostById(id: number){
     const [post, setPost] = useState<IPost>({
         id: 0,
         title:'',
-        cover_image: '',
+        social_image: '',
         tags: '',
         body_markdown: ''
     })

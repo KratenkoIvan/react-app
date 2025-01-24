@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
 export interface IPost{
-    id: number,
-    title: string,
-    description: string,
-    social_image: string,
-    author: string,
-    category: string
+    id: number;
+    title: string;
+    social_image: string;
+    description?: string;
+    tags?: string;
+    body_markdown?: string;
 }
 export function usePosts(){
     const [isLoading, setIsLoading] = useState<boolean>(false)

@@ -4,20 +4,31 @@ import { PostPage } from "../pages/PostPage/PostPage"
 import { NotFoundPage } from "../pages/NotFoundPage/NotFoundPage"
 import { MainPage } from "../pages/MainPage/MainPage"
 import { PostListPage } from "../pages/PostListPage/PostListPage"
-import { createContext } from "react"
+import { createContext, useState } from "react"
+import { IPost } from "../hooks/usePosts"
 
-interface ILikedPosts{
-    likedPost: string
-    addLike: ()=> void
+
+interface ILikedPostsContext{
+    likedPosts: IPost[]
+    addPostLike: (post: IPost)=> void
 }
 
-const initialValue: ILikedPosts[] = []
-const likedPostsContext = createContext<ILikedPosts[]>(initialValue)
+const initialValue: ILikedPostsContext = {likedPosts: [], addPostLike: (post: IPost) => {}}
+export const likedPostsContext = createContext<ILikedPostsContext>(initialValue)
 
 export function App(){
+
+    const [likedPosts, setLikedPosts] = useState<IPost[]>([])
+
+    function addPostLike (post: IPost) {
+        let array = [...likedPosts, post]
+        setLikedPosts(array)
+        console.log(likedPosts)
+    }
+
     return(
         <div>
-            <likedPostsContext.Provider value = {{likedPosts: [], addLike: () => {}}}>
+            <likedPostsContext.Provider value = {{likedPosts: likedPosts, addPostLike: addPostLike}}>
             <BrowserRouter>
                 <Routes>
                     <Route path = '/' element = {<Layout></Layout>}>
