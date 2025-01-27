@@ -4,7 +4,6 @@ import { usePosts } from "../../hooks/usePosts";
 import './PostList.css'
 import { FidgetSpinner } from "react-loader-spinner";
 
-
 // const posts = [
 //     {id: 0, category: 'Cats', title: 'Cute cat', description: 'A very cute cat', social_image: 'https://www.womansworld.com/wp-content/uploads/2024/08/cute-cats.jpg?w=1200&h=630&crop=1&quality=86&strip=all', author: 'Cat Author'},
 //     {id: 1, category: 'Programming', title: 'Useful guide', description: 'How to create a function in JS', social_image: 'https://sourcebae.com/blog/wp-content/uploads/2023/08/maxresdefault-27.jpg', author: 'Smart programmer'},

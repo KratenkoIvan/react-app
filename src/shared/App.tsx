@@ -11,9 +11,11 @@ import { IPost } from "../hooks/usePosts"
 interface ILikedPostsContext{
     likedPosts: IPost[]
     addPostLike: (post: IPost)=> void
+    removePostLike: (id: number) => void
+    isPostLiked: (id: number) => boolean
 }
 
-const initialValue: ILikedPostsContext = {likedPosts: [], addPostLike: (post: IPost) => {}}
+const initialValue: ILikedPostsContext = {likedPosts: [], addPostLike: (post: IPost) => {}, removePostLike: (id: number) => {}, isPostLiked: (id: number) => false}
 export const likedPostsContext = createContext<ILikedPostsContext>(initialValue)
 
 export function App(){
@@ -23,12 +25,23 @@ export function App(){
     function addPostLike (post: IPost) {
         let array = [...likedPosts, post]
         setLikedPosts(array)
-        console.log(likedPosts)
     }
+
+    function removePostLike (id: number) {
+        let array = likedPosts.filter((post) => {
+            return post.id !== id
+        })
+        setLikedPosts(array)
+    }
+
+    function isPostLiked(id: number) {
+        return likedPosts.some((post) => post.id === id)
+    }
+
 
     return(
         <div>
-            <likedPostsContext.Provider value = {{likedPosts: likedPosts, addPostLike: addPostLike}}>
+            <likedPostsContext.Provider value = {{likedPosts: likedPosts, addPostLike: addPostLike, removePostLike: removePostLike, isPostLiked: isPostLiked}}>
             <BrowserRouter>
                 <Routes>
                     <Route path = '/' element = {<Layout></Layout>}>

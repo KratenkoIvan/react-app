@@ -1,7 +1,9 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import './PostCard.css'
 import { Link } from "react-router-dom"
 import { likedPostsContext } from "../../App"
+import { BiLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
 
 interface IPostCardProps {
     id: number;
@@ -13,16 +15,19 @@ interface IPostCardProps {
 }
 
 export function PostCard(props: IPostCardProps){
-    const [likes, setLike] = useState(0)
-    const [isButtonDisabled, setButtonDisabled] = useState(false)
-    const likedPosts = useContext(likedPostsContext)
-    const {addPostLike} = likedPosts
-    function addLike(){
-        setLike(likes + 1)
-        setButtonDisabled(true)
-        addPostLike(props)
-        console.log()
-    }
+    const {likedPosts, addPostLike, removePostLike, isPostLiked} = useContext(likedPostsContext)
+    function likeHandler(){
+        if (isPostLiked(props.id)){
+            removePostLike(props.id)
+        }else {
+            addPostLike(props)
+            }
+        }
+        
+        useEffect(() => {
+            console.log(likedPosts)
+        }, [likedPosts])
+
     return(
         <div className="post">
             <Link to = {`/post/${props.id}`}>
@@ -32,8 +37,11 @@ export function PostCard(props: IPostCardProps){
             </Link>
             <div className="postBottom">
                 <div className="likes">
-                <p className="p-likes">Likes: {likes}</p>
-                <button onClick={addLike} disabled = {isButtonDisabled} className="postButton">👍</button>
+                { !isPostLiked(props.id) ? 
+                    <button onClick={likeHandler} className="postButton"><BiLike size={40} color='white'/></button>
+                    :
+                    <button onClick={likeHandler} className="postButton"><BiSolidLike size={40} color='white'/></button>
+                }
                 </div>
             </div>
         </div>

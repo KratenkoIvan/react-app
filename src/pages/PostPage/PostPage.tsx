@@ -3,24 +3,27 @@ import './PostPage.css'
 import { usePostById } from '../../hooks/usePostById'
 import { useTitle } from '../../hooks/useTitle'
 import { FidgetSpinner } from 'react-loader-spinner'
-import { useContext, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { likedPostsContext } from '../../shared/App'
+import { BiLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
 
 export function PostPage(){
     const params = useParams()
     useTitle(`Post`)
     const {post, isLoading, error} = usePostById(Number(params.id))
-    const [likes, setLike] = useState(0)
-    const [isButtonDisabled, setButtonDisabled] = useState(false)
-    const likedPosts = useContext(likedPostsContext)
-        const {addPostLike} = likedPosts
-        function addLike(){
-            setLike(likes + 1)
-            setButtonDisabled(true)
-            addPostLike(post)
-            console.log()
+        const {likedPosts, addPostLike, removePostLike, isPostLiked} = useContext(likedPostsContext)
+        function likeHandler(){
+            if (isPostLiked(post.id)){
+                removePostLike(post.id)
+            }else {
+                addPostLike(post)
+            }
         }
     
+        useEffect(() => {
+            console.log(likedPosts)
+        }, [likedPosts])
 
     return(
         <div className='postPage'>
@@ -36,8 +39,11 @@ export function PostPage(){
                     <h1>{post.title}</h1>
                     <img src={post.social_image} alt="yo" />
                     <div className="postPage-likes">
-                        <p>Likes: {likes}</p>
-                        <button onClick={addLike} disabled = {isButtonDisabled} className="postButton">👍</button>
+                        { !isPostLiked(post.id) ? 
+                        <button onClick={likeHandler} className="postButton"><BiLike size={50} color='white'/></button>
+                        :
+                        <button onClick={likeHandler} className="postButton"><BiSolidLike size={50} color='white'/></button>
+                        }
                     </div>
                     <h2>{post.body_markdown}</h2>
                     <p>#{post.tags}</p>
