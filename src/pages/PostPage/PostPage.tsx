@@ -3,16 +3,16 @@ import './PostPage.css'
 import { usePostById } from '../../hooks/usePostById'
 import { useTitle } from '../../hooks/useTitle'
 import { FidgetSpinner } from 'react-loader-spinner'
-import { useContext, useEffect } from 'react'
-import { likedPostsContext } from '../../shared/App'
+import { useEffect } from 'react'
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
+import { useLikedPostsContext } from '../../context/likedPostContext'
 
 export function PostPage(){
     const params = useParams()
     useTitle(`Post`)
     const {post, isLoading, error} = usePostById(Number(params.id))
-        const {likedPosts, addPostLike, removePostLike, isPostLiked} = useContext(likedPostsContext)
+        const {likedPosts, addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
         function likeHandler(){
             if (isPostLiked(post.id)){
                 removePostLike(post.id)

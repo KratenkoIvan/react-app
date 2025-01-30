@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect } from "react"
 import './PostCard.css'
 import { Link } from "react-router-dom"
-import { likedPostsContext } from "../../App"
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
+import { useLikedPostsContext } from "../../../context/likedPostContext";
 
 interface IPostCardProps {
     id: number;
@@ -15,11 +15,13 @@ interface IPostCardProps {
 }
 
 export function PostCard(props: IPostCardProps){
-    const {likedPosts, addPostLike, removePostLike, isPostLiked} = useContext(likedPostsContext)
+    const {likedPosts, addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
+
     function likeHandler(){
         if (isPostLiked(props.id)){
             removePostLike(props.id)
-        }else {
+
+        } else{
             addPostLike(props)
             }
         }
