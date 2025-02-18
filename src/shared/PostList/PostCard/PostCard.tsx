@@ -4,17 +4,11 @@ import { Link } from "react-router-dom"
 import { BiLike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
 import { useLikedPostsContext } from "../../../context/likedPostContext";
+import { IPost } from "../../../hooks/usePosts";
 
-interface IPostCardProps {
-    id: number;
-    title: string;
-    social_image: string;
-    description?: string;
-    tags?: string;
-    body_markdown?: string;
-}
 
-export function PostCard(props: IPostCardProps){
+
+export function PostCard(props: IPost){
     const {likedPosts, addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
 
     function likeHandler(){
@@ -33,9 +27,8 @@ export function PostCard(props: IPostCardProps){
     return(
         <div className="post">
             <Link to = {`/post/${props.id}`}>
-                <h1 className="postName">{props.title}</h1>
+                <h1 className="postName">{props.name}</h1>
                 <p className="postDescription">{props.description}</p>
-                <img src={props.social_image} className="postImg"/>
             </Link>
             <div className="postBottom">
                 <div className="likes">

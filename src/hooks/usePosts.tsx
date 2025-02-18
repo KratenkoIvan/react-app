@@ -2,11 +2,10 @@ import { useEffect, useState } from "react"
 
 export interface IPost{
     id: number;
-    title: string;
-    social_image: string;
-    description?: string;
-    tags?: string;
-    body_markdown?: string;
+    name: string;
+    description: string;
+    time?: string;
+    author?: string;
 }
 export function usePosts(){
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -17,12 +16,14 @@ export function usePosts(){
         async function getPosts(){
             try {
                 setIsLoading(true)
-                const response = await fetch('https://dev.to/api/articles')
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                const response = await fetch('http://localhost:8000/api/post/all')
+                const result = await response.json()
+                if (result.status === 'error'){
+                    setError(result.message)
+                }else{
+                    setPosts(result.data)
                 }
-                const posts = await response.json()
-                setPosts(posts)
+                
             
             } 
             catch (error) {

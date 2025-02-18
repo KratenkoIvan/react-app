@@ -36,8 +36,8 @@ export function PostPage(){
             ariaLabel="fidget-spinner-loading"
              /></div>) : (!error ? <>
                     <h1>{error}</h1>
-                    <h1>{post.title}</h1>
-                    <img src={post.social_image} alt="yo" />
+                    <h1>{post.name}</h1>
+                    {/* <img src={post.social_image} alt="yo" /> */}
                     <div className="postPage-likes">
                         { !isPostLiked(post.id) ? 
                         <button onClick={likeHandler} className="postButton"><BiLike size={50} color='white'/></button>
@@ -45,8 +45,8 @@ export function PostPage(){
                         <button onClick={likeHandler} className="postButton"><BiSolidLike size={50} color='white'/></button>
                         }
                     </div>
-                    <h2>{post.body_markdown}</h2>
-                    <p>#{post.tags}</p>
+                    <h2>{post.description}</h2>
+                    <p>{post.time}</p>
                 </>
             : <div className='error'>{error}</div>
             )}

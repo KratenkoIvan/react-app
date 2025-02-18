@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react"
+import { IPost } from "./usePosts"
 
-interface IPost {
-    id: number;
-    title: string;
-    social_image: string;
-    description?: string;
-    tags?: string;
-    body_markdown?: string;
-}
 export function usePostById(id: number){
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
     const [post, setPost] = useState<IPost>({
         id: 0,
-        title:'',
-        social_image: '',
-        tags: '',
-        body_markdown: ''
+        name:'',
+        description: '',
+        time: '',
+        author: ''
     })
 
     useEffect(() => {
         async function getPost(){
             try {
                 setIsLoading(true)
-                const response = await fetch(`https://dev.to/api/articles/${id}`)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                const response = await fetch(`http://localhost:8000/api/post/${id}`)
+                const result = await response.json()
+                if (result.status === 'error'){
+                    setError(result.message)
+                }else{
+                    setPost(result.data)
                 }
-                const data = await response.json()
-                setPost(data)
             }
             catch (error) {
                 const err = error instanceof Error ? error.message : "An unknown error occurred";
