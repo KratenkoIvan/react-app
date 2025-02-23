@@ -1,0 +1,45 @@
+.login-page-container{
+    height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.user-form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    max-height: 400px;
+    justify-content: space-evenly;
+}
+
+
+.user-error {
+    color: #ff5252;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+
+
+.login-submit {
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.login-submit:hover {
+    background-color: #3700b3;
+}
+
+.user-h1{
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+}

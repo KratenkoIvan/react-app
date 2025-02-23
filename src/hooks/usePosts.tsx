@@ -4,6 +4,7 @@ export interface IPost{
     id: number;
     name: string;
     description: string;
+    tagId?: number;
     time?: string;
     author?: string;
 }
@@ -22,6 +23,7 @@ export function usePosts(){
                     setError(result.message)
                 }else{
                     setPosts(result.data)
+                    console.log(result.data)
                 }
                 
             

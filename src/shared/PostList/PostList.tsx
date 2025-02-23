@@ -3,6 +3,7 @@ import { PostCard } from "./PostCard/PostCard"
 import { usePosts } from "../../hooks/usePosts";
 import './PostList.css'
 import { FidgetSpinner } from "react-loader-spinner";
+import { useTags } from "../../hooks/useTags";
 
 // const posts = [
 //     {id: 0, category: 'Cats', title: 'Cute cat', description: 'A very cute cat', social_image: 'https://www.womansworld.com/wp-content/uploads/2024/08/cute-cats.jpg?w=1200&h=630&crop=1&quality=86&strip=all', author: 'Cat Author'},
@@ -14,18 +15,20 @@ import { FidgetSpinner } from "react-loader-spinner";
 
 export function PostList(){
     const {posts, isLoading, error} = usePosts()
+    const { tags } = useTags()
     const [filteredPosts, setFilteredPosts] = useState(posts);
-    const [selectedCategory, setSelectedCategory] = useState('All')
+    const [selectedTag, setSelectedTag] = useState<number>(0)
+    
 
     useEffect(() => {
-        if (selectedCategory === 'All'){
+        if (selectedTag === 0){
             setFilteredPosts(posts)
         } else {
-            // setFilteredPosts(posts.filter((post)=> {
-            //     return post.category === selectedCategory
-            // }))
+            setFilteredPosts(posts.filter((post)=> {
+                return post.tagId === selectedTag
+            }))
         }
-    }, [selectedCategory, posts])
+    }, [selectedTag, posts])
 
     return (
         <div className="postList">
@@ -38,13 +41,12 @@ export function PostList(){
             ariaLabel="fidget-spinner-loading"
              /></div>) : (!error ? <>
                     <select onChange={(event)=>{
-                        setSelectedCategory(event.target.value)
+                        setSelectedTag(+event.target.value)
                     }}>
-                        <option value="All">All</option>
-                        <option value="Programming">Programming</option>
-                        <option value="Games">Games</option>
-                        <option value="Cats">Cats</option>
-                        <option value="Food">Food</option>
+                        <option value={0}>All</option>
+                        {tags && tags.map(tag => {
+                            return <option value={tag.id}>{tag.name}</option>
+                        })}
                     </select>
                      
                     {filteredPosts.map((post)=> {
