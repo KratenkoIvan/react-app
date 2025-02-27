@@ -6,6 +6,7 @@ interface IMainProps {
 }
 export function Main(props: IMainProps){
     return (
+        // Main -> main
         <div className='Main'>
             {props.children}
         </div>

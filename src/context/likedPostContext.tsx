@@ -8,18 +8,18 @@ interface ILikedPostsContext{
     removePostLike: (id: number) => void
     isPostLiked: (id: number) => boolean
 }
-
+// children можно указать опциональными
 interface ILikedPostsContextProviderProps{
     children: ReactNode
 }
-
+// табуляция
 const initialValue: ILikedPostsContext = {
         likedPosts: [],
         addPostLike: (post: IPost) => {},
         removePostLike: (id: number) => {},
         isPostLiked: (id: number) => false
     }
-
+// export не надо
 export const likedPostsContext = createContext<ILikedPostsContext>(initialValue)
 
 export function useLikedPostsContext(){

@@ -4,15 +4,19 @@ import { usePostById } from '../../hooks/usePostById'
 import { useTitle } from '../../hooks/useTitle'
 import { FidgetSpinner } from 'react-loader-spinner'
 import { useEffect } from 'react'
-import { BiLike } from "react-icons/bi";
-import { BiSolidLike } from "react-icons/bi";
+import { BiLike, BiSolidLike } from "react-icons/bi";
+// import { BiSolidLike } from "react-icons/bi";
+// не надо
 import { useLikedPostsContext } from '../../context/likedPostContext'
 
 export function PostPage(){
     const params = useParams()
     useTitle(`Post`)
     const {post, isLoading, error} = usePostById(Number(params.id))
+    // табуляция
         const {likedPosts, addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
+
+        // ButtonLike component 
         function likeHandler(){
             if (isPostLiked(post.id)){
                 removePostLike(post.id)
@@ -20,7 +24,7 @@ export function PostPage(){
                 addPostLike(post)
             }
         }
-    
+    // не надо
         useEffect(() => {
             console.log(likedPosts)
         }, [likedPosts])

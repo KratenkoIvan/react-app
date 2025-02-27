@@ -8,6 +8,7 @@ interface IForm {
 }
 
 export function RegisterPage(){
+    // useTitle
 
     const {register: register, handleSubmit, formState} = useForm <IForm>({
             mode: 'onSubmit'

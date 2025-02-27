@@ -15,6 +15,7 @@ import { useTags } from "../../hooks/useTags";
 
 export function PostList(){
     const {posts, isLoading, error} = usePosts()
+    // error isloading 
     const { tags } = useTags()
     const [filteredPosts, setFilteredPosts] = useState(posts);
     const [selectedTag, setSelectedTag] = useState<number>(0)

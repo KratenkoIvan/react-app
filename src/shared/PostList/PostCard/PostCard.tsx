@@ -19,7 +19,7 @@ export function PostCard(props: IPost){
             addPostLike(props)
             }
         }
-        
+    // не нужно 
         useEffect(() => {
             console.log(likedPosts)
         }, [likedPosts])
