@@ -9,20 +9,15 @@ import { IPost } from "../../../hooks/usePosts";
 
 
 export function PostCard(props: IPost){
-    const {likedPosts, addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
+    const {addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
 
     function likeHandler(){
         if (isPostLiked(props.id)){
             removePostLike(props.id)
-
         } else{
             addPostLike(props)
             }
         }
-        
-        useEffect(() => {
-            console.log(likedPosts)
-        }, [likedPosts])
 
     return(
         <div className="post">

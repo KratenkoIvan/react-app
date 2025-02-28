@@ -1,19 +1,20 @@
 import { useForm } from "react-hook-form"
+import { useTitle } from "../../hooks/useTitle"
 import "./LoginPage.css"
 
-interface IForm {
+interface ILoginForm {
     email: string,
     password: string,
 }
 
 
 export function LoginPage(){
-
-    const {register: register, handleSubmit, formState} = useForm <IForm>({
+    useTitle('Login')
+    const {register: register, handleSubmit, formState} = useForm <ILoginForm>({
         mode: 'onSubmit'
     })
 
-    function onSubmit(data: IForm){
+    function onSubmit(data: ILoginForm){
         // fetch("https://http://localhost:8000/api/post/login",{
         //     method: 'POST',
         //     headers: {

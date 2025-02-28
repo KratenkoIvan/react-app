@@ -1,19 +1,22 @@
 import { useForm } from "react-hook-form"
+import { useTitle } from "../../hooks/useTitle"
 import "./RegisterPage.css"
 
-interface IForm {
+interface IRegisterForm {
     username: string,
     email: string,
     password: string,
 }
 
 export function RegisterPage(){
+    
+    useTitle('Registration')
 
-    const {register: register, handleSubmit, formState} = useForm <IForm>({
+    const {register: register, handleSubmit, formState} = useForm <IRegisterForm>({
             mode: 'onSubmit'
         })
 
-    function onSubmit(data: IForm){
+    function onSubmit(data: IRegisterForm){
         // fetch("https://http://localhost:8000/api/post/register",{
         //     method: 'POST',
         //     headers: {

@@ -10,17 +10,17 @@ interface ILikedPostsContext{
 }
 
 interface ILikedPostsContextProviderProps{
-    children: ReactNode
+    children?: ReactNode
 }
 
 const initialValue: ILikedPostsContext = {
-        likedPosts: [],
-        addPostLike: (post: IPost) => {},
-        removePostLike: (id: number) => {},
-        isPostLiked: (id: number) => false
-    }
+    likedPosts: [],
+    addPostLike: (post: IPost) => {},
+    removePostLike: (id: number) => {},
+    isPostLiked: (id: number) => false
+}
 
-export const likedPostsContext = createContext<ILikedPostsContext>(initialValue)
+const likedPostsContext = createContext<ILikedPostsContext>(initialValue)
 
 export function useLikedPostsContext(){
     return useContext(likedPostsContext)

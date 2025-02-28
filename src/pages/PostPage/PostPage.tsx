@@ -1,29 +1,23 @@
 import { useParams } from 'react-router-dom'
-import './PostPage.css'
 import { usePostById } from '../../hooks/usePostById'
 import { useTitle } from '../../hooks/useTitle'
 import { FidgetSpinner } from 'react-loader-spinner'
-import { useEffect } from 'react'
-import { BiLike } from "react-icons/bi";
-import { BiSolidLike } from "react-icons/bi";
+import { BiLike, BiSolidLike } from "react-icons/bi";
 import { useLikedPostsContext } from '../../context/likedPostContext'
-
+import './PostPage.css'
 export function PostPage(){
     const params = useParams()
     useTitle(`Post`)
     const {post, isLoading, error} = usePostById(Number(params.id))
-        const {likedPosts, addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
-        function likeHandler(){
-            if (isPostLiked(post.id)){
-                removePostLike(post.id)
-            }else {
-                addPostLike(post)
-            }
+    const {addPostLike, removePostLike, isPostLiked} = useLikedPostsContext()
+
+    function likeHandler(){
+        if (isPostLiked(post.id)){
+            removePostLike(post.id)
+        }else {
+            addPostLike(post)
         }
-    
-        useEffect(() => {
-            console.log(likedPosts)
-        }, [likedPosts])
+    }
 
     return(
         <div className='postPage'>
