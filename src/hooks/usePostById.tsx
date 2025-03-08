@@ -9,7 +9,8 @@ export function usePostById(id: number){
         name:'',
         description: '',
         time: '',
-        author: ''
+        author: '',
+        image: '',
     })
 
     useEffect(() => {

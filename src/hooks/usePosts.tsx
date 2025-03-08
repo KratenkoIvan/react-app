@@ -7,6 +7,7 @@ export interface IPost{
     tagId?: number;
     time?: string;
     author?: string;
+    image: string;
 }
 export function usePosts(){
     const [isLoading, setIsLoading] = useState<boolean>(false)

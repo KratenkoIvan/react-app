@@ -42,7 +42,7 @@ export function PostList(){
                     </select>
                      
                     {filteredPosts.map((post)=> {
-                        return <PostCard key={post.id} id = {post.id} name = {post.name} description = {post.description}></PostCard>
+                        return <PostCard key={post.id} id = {post.id} name = {post.name} description = {post.description} image = {post.image}></PostCard>
                     }
                     )}
                 </>

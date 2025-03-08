@@ -23,6 +23,7 @@ export function PostCard(props: IPost){
         <div className="post">
             <Link to = {`/post/${props.id}`}>
                 <h1 className="postName">{props.name}</h1>
+                <img className="postImg" src={props.image} alt="" />
                 <p className="postDescription">{props.description}</p>
             </Link>
             <div className="postBottom">

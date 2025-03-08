@@ -9,7 +9,7 @@ export function LikedPostsPage(){
     return(
         <div className="liked-posts-list">
             {likedPosts.map((post)=>{
-                return <PostCard key={post.id} id = {post.id} name = {post.name} description = {post.description}></PostCard>
+                return <PostCard key={post.id} id = {post.id} name = {post.name} description = {post.description} image={post.image}></PostCard>
             })}
         </div>
     )
