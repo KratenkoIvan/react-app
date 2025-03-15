@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react"
 
+interface IComment{
+    id: number;
+    title: string;
+    body: string;
+    userId: number;
+    postId: number;
+}
+
 export interface IPost{
     id: number;
     name: string;
@@ -8,6 +16,7 @@ export interface IPost{
     time?: string;
     author?: string;
     image: string;
+    comments?: IComment[];
 }
 export function usePosts(){
     const [isLoading, setIsLoading] = useState<boolean>(false)

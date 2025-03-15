@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+
 import './PostCard.css'
 import { Link } from "react-router-dom"
 import { BiLike } from "react-icons/bi";

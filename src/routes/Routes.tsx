@@ -7,6 +7,7 @@ import { Layout } from "../shared/Layout/Layout"
 import { LikedPostsPage } from "../pages/LikedPostsPage/LikedPostsPage"
 import { LoginPage } from "../pages/LoginPage/LoginPage"
 import { RegisterPage } from "../pages/RegisterPage/RegisterPage"
+import { ProfilePage } from "../pages/ProfilePage/ProfilePage"
 
 export function AppRoutes(){
     return (
@@ -18,6 +19,7 @@ export function AppRoutes(){
                     <Route path = '/liked' element = {<LikedPostsPage></LikedPostsPage>}></Route>
                     <Route path='/login' element={<LoginPage></LoginPage>}></Route>
                     <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
+                    <Route path="/profile" element = {<ProfilePage></ProfilePage>}></Route>
                     <Route path="/post/:id" element = {<PostPage></PostPage>}></Route>
                     <Route path ='/*' element = {<NotFoundPage></NotFoundPage>}></Route>
                     
